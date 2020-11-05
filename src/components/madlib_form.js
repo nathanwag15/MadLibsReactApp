@@ -5,9 +5,24 @@ import {
 } from 'reactstrap';
 
 class MadlibForm extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            color: '',
+            pluralNoun: '',
+            adjectiveOne: '',
+            celebrityOne: ''
+        }
+    }
 
     handleChange = function(props) {
-        console.log('trying to handle change');
+        return function() {
+            this.setState({[props.inputTitle]: event.target.value})
+            console.log(`value for input ${props.inputTitle} is: ${this.state.color}`)
+            
+        }.bind(this);
+
     }
     render(){
         return(
@@ -33,7 +48,7 @@ class MadlibForm extends Component {
                         <label className="greenLabel">1</label>
                     </Col>
                     <Col nd="10">
-                        <input placeholder="Noun (Plural)" type="text" onChange={this.handleChange} />  
+                        <input placeholder="Noun (Plural)" type="text" onChange={this.handleChange({inputTitle: 'pluralNoun'})} />  
                     </Col>
                 </Row>
                 <Row>
@@ -48,7 +63,7 @@ class MadlibForm extends Component {
                         <label className="greenLabel">1</label>
                     </Col>
                     <Col nd="10">
-                        <input placeholder="Adjective" type="text" onChange={this.handleChange}/>  
+                        <input placeholder="Adjective" type="text" onChange={this.handleChange({inputTitle: 'adjectiveOne'})}/>  
                     </Col>
                 </Row>
                 <Row>
@@ -63,7 +78,7 @@ class MadlibForm extends Component {
                         <label className="greenLabel">1</label>
                     </Col>
                     <Col nd="10">
-                        <input placeholder="Celebrity" type="text" onChange={this.handleChange}/>  
+                        <input placeholder="Celebrity" type="text" onChange={this.handleChange({inputTitle: 'celebrityOne'})}/>  
                     </Col>
                 </Row>
                 <Row>
