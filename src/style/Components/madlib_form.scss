@@ -25,6 +25,7 @@ input {
     text-align: center;
     font-weight: 500;
     width: 100%;
+    outline: none;
 }
 
 .input-description {
@@ -49,20 +50,32 @@ input {
     align-items: center;
 }
 
+@mixin buttonStyles {
+    color: white !important;
+    text-align: center;
+    margin-top: 42px;
+    height: 50px;
+    width: 300px;
+    font-size: 1.25em;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
+    border-radius: 4px;
+    outline: none;
+}
 
-// .generate-button {
-//     @include buttonStyles;
-//     background-color: $bottegaGreen;
-// }
 
-// .clear-button, a {
-//     @include buttonStyles;
-//     background-color: $clearBlue;
-//     padding-top: 9px;
-//     text-align: center;
-// }
+.generate-button {  
+    @include buttonStyles;
+    background-color: $bottegaGreen;
+}
 
-// input:focus,
-// button:focus {
-//     outline: none;
-// }
+.clear-button, a {
+    @include buttonStyles;
+    background-color: $clearBlue;    
+    padding-top: 9px;
+    text-align: center;
+}
+
+input:focus,
+button:focus {
+    outline: none;
+}

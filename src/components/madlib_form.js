@@ -7,9 +7,11 @@ import {
 
 import _ from 'lodash';
 
+import MadLibContent from './madlib_content';
+
 function MadLibInput(props) {
     return (
-        <Col nd="3" className="input-wrapper">
+        <Col md="3" className="input-wrapper">
             <Row>
                 <Col md="2">
                     <label className="green-label">{props.index}</label>
@@ -33,6 +35,7 @@ class MadlibForm extends Component {
         super(props)
 
         this.state = {
+            completedForm: false,
             color: '',
             pluralNoun: '',
             adjectiveOne: '',
@@ -45,13 +48,41 @@ class MadlibForm extends Component {
     }
 
     handleChange = function(props) {
-        return function() {
+        return function(event) {
             this.setState({[props.inputTitle]: event.target.value})
             console.log(`value for input ${props.inputTitle} is: ${this.state.color}`)
             
         }.bind(this);
-
     }
+
+    handleSubmit = function(event) {
+        this.setState({completedForm: true});
+        event.preventDefault();
+    }.bind(this);
+
+    renderButton = function() {
+        if (this.state.completedForm) {
+            return  <a className="clear-button" onClick={this.handleClick}>Clear Mad Lib</a> 
+        } return <input type="submit" className="generate-button" value="Generate Mad Lib" />
+    }
+
+    
+
+    handleClick = function(event) {
+        this.setState({
+            completedForm: false,
+            color: '',
+            pluralNoun: '',
+            adjectiveOne: '',
+            celebrityOne: '',
+            adjectiveTwo: '',
+            nounOne: '',
+            numberOne: '',
+            numberTwo: ''
+        });
+
+    }.bind(this)
+
     render(){
 
         this.inputData = [
@@ -64,21 +95,26 @@ class MadlibForm extends Component {
             {placeholder: 'Noun', prop: 'nounOne', state: this.state.nounOne},
             {placeholder: 'Number', prop: 'numberOne', state: this.state.numberOne},
             {placeholder: 'Number', prop: 'numberTwo', state: this.state.numberTwo},
-            // adjective
-            // noun
-            // number
-            // number
         ]
+
         return(
         <div className="card-wrapper">
             <Card>                
-                <Row style={{textAlign:'center', color: 'white'}} >
-                    {
-                        _.map(this.inputData, (data, indexKey) => {
-                            return <MadLibInput key={indexKey} placeholder={data.placeholder} index={indexKey + 1} state={data.state} prop={data.prop} onChange={this.handleChange({inputTitle: data.prop})} />
-                        })
-                    }
-                </Row>
+                <form onSubmit={this.handleSubmit} id="madlib-form">
+                    <Row style={{textAlign:'center', color: 'white'}} >
+                        {
+                            _.map(this.inputData, (data, indexKey) => {
+                                return <MadLibInput key={indexKey} placeholder={data.placeholder} index={indexKey + 1} state={data.state} prop={data.prop} onChange={this.handleChange({inputTitle: data.prop})} />
+                            })
+                        }
+                    </Row>
+                    <Row>
+                        <Col md="12" className="button-wrapper">                            
+                            {this.renderButton()}
+                        </Col>
+                    </Row>
+                </form>
+                <MadLibContent data={this.state} />
             </Card>
         </div>
         )
