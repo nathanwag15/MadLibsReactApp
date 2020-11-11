@@ -43,7 +43,15 @@ class MadlibForm extends Component {
             adjectiveTwo: '',
             nounOne: '',
             numberOne: '',
-            numberTwo: ''
+            numberTwo: '',
+            nounTwo: '',
+            adjectiveThree: '',
+            celebrityTwo: '',
+            celebrithThree: '',
+            adjectiveFour: '',
+            nounThree: '',
+            celebrityFour: '',
+            adjectiveFive: ''
         }
     }
 
@@ -66,7 +74,7 @@ class MadlibForm extends Component {
         } return <input type="submit" className="generate-button" value="Generate Mad Lib" />
     }
 
-    
+
 
     handleClick = function(event) {
         this.setState({
@@ -78,7 +86,16 @@ class MadlibForm extends Component {
             adjectiveTwo: '',
             nounOne: '',
             numberOne: '',
-            numberTwo: ''
+            numberTwo: '',
+            nounTwo: '',
+            adjectiveThree: '',
+            celebrityTwo: '',
+            celebrithThree: '',
+            adjectiveFour: '',
+            nounThree: '',
+            celebrityFour: '',
+            adjectiveFive: ''
+
         });
 
     }.bind(this)
@@ -95,6 +112,16 @@ class MadlibForm extends Component {
             {placeholder: 'Noun', prop: 'nounOne', state: this.state.nounOne},
             {placeholder: 'Number', prop: 'numberOne', state: this.state.numberOne},
             {placeholder: 'Number', prop: 'numberTwo', state: this.state.numberTwo},
+
+            {placeholder: 'Noun', prop: 'nounTwo', state: this.state.nounTwo},
+            {placeholder: 'Adjective', prop: 'adjectiveThree', state: this.state.adjectiveThree},
+            {placeholder: 'Celebrity', prop: 'celebrityTwo', state: this.state.celebrityTwo},
+            {placeholder: 'Celebrity', prop: 'celebrityThree', state: this.state.celebrityThree},
+
+            {placeholder: 'Adjective', prop: 'adjectiveFour', state: this.state.adjectiveFour},
+            {placeholder: 'Noun', prop: 'nounThree', state: this.state.nounThree},
+            {placeholder: 'Celebrity', prop: 'celebrityFour', state: this.state.celebrityFour},
+            {placeholder: 'Adjective', prop: 'adjectiveFive', state: this.state.adjectiveFive},
         ]
 
         return(
